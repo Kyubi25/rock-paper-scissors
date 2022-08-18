@@ -1,3 +1,9 @@
+let computerScore = 0;
+let playerScore =0;
+const playerSelection = prompt("Choose Rock, Paper or Scissors");
+const computerSelection = getComputerChoice();
+console.log(playRound(playerSelection, computerSelection));
+
 function getComputerChoice (){
     let random = Math.floor(Math.random()*3);
     if (random == 1)
@@ -34,10 +40,8 @@ function getComputerChoice (){
       return "It's a tie!"
     } 
     else
-    return prompt("Choose Rock, Paper or Scissors")
+    return "Try again!"
     
   }
-   
-  const playerSelection = prompt("Choose Rock, Paper or Scissors");
-  const computerSelection = getComputerChoice();
-  console.log(playRound(playerSelection, computerSelection));
+
+  
