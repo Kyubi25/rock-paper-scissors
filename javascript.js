@@ -1,5 +1,3 @@
-let computerScore = 0;
-let playerScore =0;
 const playerSelection = prompt("Choose Rock, Paper or Scissors");
 const computerSelection = getComputerChoice();
 console.log(playRound(playerSelection, computerSelection));
@@ -11,10 +9,10 @@ function getComputerChoice (){
     else if (random == 2)
     return "Paper"
     else
-    return "scissors"
+    return "Scissors"
   }
 
-  function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === "rock") {
       if (computerSelection.toLowerCase() === "paper")
       return "You lose! Paper beats rock"
@@ -43,5 +41,6 @@ function getComputerChoice (){
     return "Try again!"
     
   }
+
 
   
