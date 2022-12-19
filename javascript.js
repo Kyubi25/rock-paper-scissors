@@ -1,72 +1,38 @@
-let rounds = 5;
-const outcomes = ['rock' , 'paper' , 'scissors'];
+// define variables for the buttons and the result text
+const rockButton = document.getElementById('rock');
+const paperButton = document.getElementById('paper');
+const scissorsButton = document.getElementById('scissors');
+const resultText = document.getElementById('result');
 
-function computerSelect(){
-  let runningStuff = computerPlay();
-  computerSelection = runningStuff;
-  return computerSelection;
-}
+// define a function to play the game
+function play(playerChoice) {
+  // generate a random number for the computer's choice
+  const computerChoice = Math.floor(Math.random() * 3);
 
-function game(){
-  let i; 
-    for (i = 0; i < rounds; i++ ){
-      computerSelect();
-      playerSelect();
-      validName();
-    }
-}
-
-function playerSelect(){
-  let initialPrompt = prompt('Please enter your choise:');
-  playerSelection = initialPrompt.toLowerCase();
-  return playerSelection;
-}
-
-function validName(){
-  if (outcomes.includes(playerSelection)){
-    playRound(playerSelection, computerSelection);
+  // determine the winner based on the choices
+  let result;
+  if (playerChoice === computerChoice) {
+    result = 'Draw';
+  } else if (
+    (playerChoice === 0 && computerChoice === 2) ||
+    (playerChoice === 1 && computerChoice === 0) ||
+    (playerChoice === 2 && computerChoice === 1)
+  ) {
+    result = 'You win!';
   } else {
-    alert("Invalid Selection, please try again!");
-    rounds = rounds +1;
-    return rounds;
+    result = 'You lose';
   }
+
+  // convert the choices to strings for display
+  const choices = ['rock', 'paper', 'scissors'];
+  const playerChoiceString = choices[playerChoice];
+  const computerChoiceString = choices[computerChoice];
+
+  // update the result text
+  resultText.innerHTML = `You chose ${playerChoiceString}, the computer chose ${computerChoiceString}. ${result}`;
 }
 
-function computerPlay(){
-  return outcomes[Math.floor(Math.random() * outcomes.length)];
-}
-
-function playRound(playerSelection, computerSelection) {
-  switch( true || false) {
-    case playerSelection === "rock"  && computerSelection === "paper":
-      alert ("Computer chose paper so you lose! ");
-      break;
-    
-    case playerSelection === "paper" && computerSelection === "scissors":
-      alert ("Computer chose scissors so you lose! ");
-      break;
-
-      case  playerSelection === "scissors" && computerSelection === "rock":
-        alert("Computer chose rock and you lose!");
-    break;
-
-    case playerSelection === "rock" && computerSelection === "scissors":
-        alert("Computer chose scissors and you win!");
-    break;
-
-    case playerSelection === "paper" && computerSelection === "rock":
-        alert("Computer chose rock and you win!");
-    break;
-
-    case playerSelection === "scissors" && computerSelection === "paper":
-        alert("Computer chose paper and you win!");
-    break;
-    
-    case playerSelection === computerSelection:
-        alert("It's a tie!");
-    break;
-  }
-}
-
-game();
-  
+// add event listeners to the buttons to play the game when clicked
+rockButton.addEventListener('click', () => play(0));
+paperButton.addEventListener('click', () => play(1));
+scissorsButton.addEventListener('click', () => play(2));
